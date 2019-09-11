@@ -11,6 +11,3 @@ class ApiBase:
         self.auth = HTTPBasicAuth(self.username, self.password)
         urllib3.disable_warnings()
 
-    @property
-    def url(self):
-        return self.app_base_url

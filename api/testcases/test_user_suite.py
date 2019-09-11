@@ -15,8 +15,9 @@ class TestUsers(TestCaseBase):
         # self.json = self.json_loader("../data/json1.json")
         self.json = self.json_loader("api/data/json1.json")
 
-    @pytest.mark.full_regression
+    @pytest.mark.apitest
     def test_create_user_no_stuff(self):
+        pytest.skip("Deprecated")
         random_number = random.randint(1, 1000)
 
         print(self.json)
@@ -32,8 +33,8 @@ class TestUsers(TestCaseBase):
         assert resp['username'] == "UserTest1_{}".format(random_number), "Wrong username"
         assert resp['email'] == "UserTest_{}@test.com".format(random_number), "Wrong username"
 
-    @pytest.mark.full_regression
     def test_create_user_stuff(self):
+        self.LOGGER.info("Running test case `test_create_user_stuff`")
         random_number = random.randint(1, 1000)
         user_instance = Users(ReadEnvConfig.get_app_api_url(), self.json["username"], self.json["password"])
         resp, status_code = user_instance.create_user(
@@ -47,7 +48,6 @@ class TestUsers(TestCaseBase):
         assert resp['username'] == "UserTest1_{}".format(random_number), "Wrong username"
         assert resp['email'] == "UserTest_{}@test.com".format(random_number), "Wrong username"
 
-    @pytest.mark.full_regression
     def test_delete_user(self):
         # pre-step
         random_number = random.randint(1, 1000)
