@@ -11,8 +11,10 @@ def example_custom_fixture():
     return student
 
 
-class TestUsers(object):
-    def test01(self, example_custom_fixture):
+class TestFixture(object):
+
+    @pytest.mark.smoke
+    def test_01(self, example_custom_fixture):
         assert example_custom_fixture.name == "oscar", "The name is no the expected"
         example_custom_fixture.name = "Fulanito"
         assert example_custom_fixture.name == "Fulanito", "The name is no the expected"
